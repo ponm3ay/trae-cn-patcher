@@ -1,0 +1,26 @@
+{
+  "name": "trae-cn-patcher",
+  "version": "1.0.0",
+  "description": "Trae CN IDE micro-patcher: hide the install-folder workspace banner and keep integrity checksums in sync",
+  "installDirs": [
+    "D:\\Trae CN",
+    "C:\\Program Files\\Trae CN",
+    "C:\\Program Files (x86)\\Trae CN",
+    "%LOCALAPPDATA%\\Programs\\Trae CN",
+    "%LOCALAPPDATA%\\Programs\\TRAE SOLO CN"
+  ],
+  "patches": [
+    {
+      "id": "disable-app-root-warning-banner",
+      "description": "Hide the top banner shown when a workspace folder is inside the installation directory ('files may be overwritten or deleted during an update').",
+      "target": "out/vs/workbench/workbench.desktop.main.js",
+      "matchRegex": "[\\w$]+(?:\\.[\\w$]+)*\\.show\\(\\{id:\"appRootWarning\\.banner\"[^}]*\\}\\)",
+      "replace": "void 0",
+      "expectedOccurrences": 1,
+      "checksumSync": {
+        "productJson": "product.json",
+        "checksumKey": "vs/workbench/workbench.desktop.main.js"
+      }
+    }
+  ]
+}
